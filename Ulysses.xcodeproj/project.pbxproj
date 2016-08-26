@@ -13,7 +13,8 @@
 		3399EBE31D70C67200B4363C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3399EBE21D70C67200B4363C /* Assets.xcassets */; };
 		3399EBE61D70C67200B4363C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3399EBE41D70C67200B4363C /* LaunchScreen.storyboard */; };
 		3399EBF11D70C67200B4363C /* UlyssesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3399EBF01D70C67200B4363C /* UlyssesTests.swift */; };
-		3399EBFD1D70C9D000B4363C /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3399EBFC1D70C9D000B4363C /* Mapbox.framework */; };
+		3399EBFE1D70CD9D00B4363C /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3399EBFC1D70C9D000B4363C /* Mapbox.framework */; };
+		3399EBFF1D70CD9D00B4363C /* Mapbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3399EBFC1D70C9D000B4363C /* Mapbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,6 +26,20 @@
 			remoteInfo = Ulysses;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3399EC001D70CD9E00B4363C /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				3399EBFF1D70CD9D00B4363C /* Mapbox.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		3399EBD81D70C67200B4363C /* Ulysses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ulysses.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -45,7 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3399EBFD1D70C9D000B4363C /* Mapbox.framework in Frameworks */,
+				3399EBFE1D70CD9D00B4363C /* Mapbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,6 +125,7 @@
 				3399EBD41D70C67200B4363C /* Sources */,
 				3399EBD51D70C67200B4363C /* Frameworks */,
 				3399EBD61D70C67200B4363C /* Resources */,
+				3399EC001D70CD9E00B4363C /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -150,6 +166,7 @@
 				TargetAttributes = {
 					3399EBD71D70C67200B4363C = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = 36RZS834XK;
 					};
 					3399EBEB1D70C67200B4363C = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -331,6 +348,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -339,6 +358,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ch.ulysses.Ulysses;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -346,6 +366,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -354,6 +376,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ch.ulysses.Ulysses;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
