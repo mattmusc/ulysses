@@ -15,6 +15,7 @@
 		3399EBF11D70C67200B4363C /* UlyssesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3399EBF01D70C67200B4363C /* UlyssesTests.swift */; };
 		33CDA5B21D71781B00F92406 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33CDA5B11D71781B00F92406 /* MapKit.framework */; };
 		33CDA5B41D7179DE00F92406 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CDA5B31D7179DE00F92406 /* Note.swift */; };
+		33CDA5BA1D718DA600F92406 /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CDA5B91D718DA600F92406 /* MusicPlayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		3399EBF21D70C67200B4363C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		33CDA5B11D71781B00F92406 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		33CDA5B31D7179DE00F92406 /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		33CDA5B91D718DA600F92406 /* MusicPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MusicPlayer.swift; path = Ulysses/MusicPlayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 		3399EBCF1D70C67100B4363C = {
 			isa = PBXGroup;
 			children = (
+				33CDA5B91D718DA600F92406 /* MusicPlayer.swift */,
 				33CDA5B11D71781B00F92406 /* MapKit.framework */,
 				3399EBDA1D70C67200B4363C /* Ulysses */,
 				3399EBEF1D70C67200B4363C /* UlyssesTests */,
@@ -226,6 +229,7 @@
 			files = (
 				3399EBDE1D70C67200B4363C /* ViewController.swift in Sources */,
 				3399EBDC1D70C67200B4363C /* AppDelegate.swift in Sources */,
+				33CDA5BA1D718DA600F92406 /* MusicPlayer.swift in Sources */,
 				33CDA5B41D7179DE00F92406 /* Note.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
