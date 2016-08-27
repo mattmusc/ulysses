@@ -14,6 +14,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
     var backgroundMusicPlayer = AVAudioPlayer()
+    var wantsToPlay = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +26,6 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
         mapView.addAnnotation(london)
         mapView.addAnnotation(oslo)
         mapView.addAnnotation(paris)
-        
-        playBackgroundMusic("01.mp3")
     }
 
     override func didReceiveMemoryWarning() {
@@ -68,11 +67,13 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
         let placeInfo = capital.info
         
         let callActionHandler = { (action:UIAlertAction!) -> Void in
-            //self.playBackgroundMusic("01.mp3")
+            self.wantsToPlay = self.wantsToPlay ? false : true
+            self.playBackgroundMusic("01.mp3")
         }
         
         let ac = UIAlertController(title: placeName, message: placeInfo, preferredStyle: .Alert)
-        ac.addAction(UIAlertAction(title: "OK", style: .Default, handler: callActionHandler))
+        ac.addAction(UIAlertAction(title: "play", style: .Default, handler: callActionHandler))
+        ac.addAction(UIAlertAction(title: "stop", style: .Default, handler: callActionHandler))
         presentViewController(ac, animated: true, completion: nil)
     }
     
@@ -90,7 +91,12 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
             backgroundMusicPlayer.numberOfLoops = -1
             backgroundMusicPlayer.delegate = self
             backgroundMusicPlayer.prepareToPlay()
-            backgroundMusicPlayer.play()
+            
+            if (self.wantsToPlay) {
+                backgroundMusicPlayer.play()
+            } else {
+                backgroundMusicPlayer.pause()
+            }
         } catch let error as NSError {
             print(error.description)
         }
