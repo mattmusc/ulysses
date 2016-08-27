@@ -16,6 +16,7 @@
 		33CDA5B21D71781B00F92406 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33CDA5B11D71781B00F92406 /* MapKit.framework */; };
 		33CDA5B41D7179DE00F92406 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CDA5B31D7179DE00F92406 /* Note.swift */; };
 		33CDA5BA1D718DA600F92406 /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CDA5B91D718DA600F92406 /* MusicPlayer.swift */; };
+		33CDA5BC1D71913500F92406 /* 01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 33CDA5BB1D71913500F92406 /* 01.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,7 +55,8 @@
 		3399EBF21D70C67200B4363C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		33CDA5B11D71781B00F92406 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		33CDA5B31D7179DE00F92406 /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
-		33CDA5B91D718DA600F92406 /* MusicPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MusicPlayer.swift; path = Ulysses/MusicPlayer.swift; sourceTree = "<group>"; };
+		33CDA5B91D718DA600F92406 /* MusicPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
+		33CDA5BB1D71913500F92406 /* 01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 01.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,7 +81,6 @@
 		3399EBCF1D70C67100B4363C = {
 			isa = PBXGroup;
 			children = (
-				33CDA5B91D718DA600F92406 /* MusicPlayer.swift */,
 				33CDA5B11D71781B00F92406 /* MapKit.framework */,
 				3399EBDA1D70C67200B4363C /* Ulysses */,
 				3399EBEF1D70C67200B4363C /* UlyssesTests */,
@@ -99,6 +100,8 @@
 		3399EBDA1D70C67200B4363C /* Ulysses */ = {
 			isa = PBXGroup;
 			children = (
+				33CDA5BD1D71913F00F92406 /* Music */,
+				33CDA5B91D718DA600F92406 /* MusicPlayer.swift */,
 				3399EBDB1D70C67200B4363C /* AppDelegate.swift */,
 				3399EBDD1D70C67200B4363C /* ViewController.swift */,
 				3399EBDF1D70C67200B4363C /* Main.storyboard */,
@@ -117,6 +120,14 @@
 				3399EBF21D70C67200B4363C /* Info.plist */,
 			);
 			path = UlyssesTests;
+			sourceTree = "<group>";
+		};
+		33CDA5BD1D71913F00F92406 /* Music */ = {
+			isa = PBXGroup;
+			children = (
+				33CDA5BB1D71913500F92406 /* 01.mp3 */,
+			);
+			name = Music;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -172,6 +183,9 @@
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = 36RZS834XK;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Maps.iOS = {
 								enabled = 1;
 							};
@@ -207,6 +221,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33CDA5BC1D71913500F92406 /* 01.mp3 in Resources */,
 				3399EBE61D70C67200B4363C /* LaunchScreen.storyboard in Resources */,
 				3399EBE31D70C67200B4363C /* Assets.xcassets in Resources */,
 				3399EBE11D70C67200B4363C /* Main.storyboard in Resources */,

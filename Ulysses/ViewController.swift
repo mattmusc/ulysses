@@ -6,12 +6,14 @@
 //  Copyright © 2016 The Ulysses Team. All rights reserved.
 //
 
+import AVFoundation
 import UIKit
 import MapKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, AVAudioPlayerDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
+    var backgroundMusicPlayer = AVAudioPlayer()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +25,8 @@ class ViewController: UIViewController {
         mapView.addAnnotation(london)
         mapView.addAnnotation(oslo)
         mapView.addAnnotation(paris)
+        
+        playBackgroundMusic("01.mp3")
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,8 +51,6 @@ class ViewController: UIViewController {
                 let btn = UIButton(type: .DetailDisclosure)
                 annotationView!.rightCalloutAccessoryView = btn
                 
-                print("open")
-                
             } else {
                 // 6
                 annotationView!.annotation = annotation
@@ -66,16 +68,33 @@ class ViewController: UIViewController {
         let placeInfo = capital.info
         
         let callActionHandler = { (action:UIAlertAction!) -> Void in
-            let alertMessage = UIAlertController(title: "Service Unavailable", message: "Sorry, the call feature is not available yet. Please retry later.", preferredStyle: .Alert)
-            alertMessage.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-            self.presentViewController(alertMessage, animated: true, completion: nil)
+            //self.playBackgroundMusic("01.mp3")
         }
         
         let ac = UIAlertController(title: placeName, message: placeInfo, preferredStyle: .Alert)
         ac.addAction(UIAlertAction(title: "OK", style: .Default, handler: callActionHandler))
         presentViewController(ac, animated: true, completion: nil)
-        
-        print("closed")
     }
+    
+    func playBackgroundMusic(filename: String) {
+        let url = NSBundle.mainBundle().URLForResource(filename, withExtension: nil)
+        guard let newURL = url else {
+            NSLog("Could not find file: \(filename)")
+            return
+        }
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try AVAudioSession.sharedInstance().setActive(true)
+            UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
+            backgroundMusicPlayer = try AVAudioPlayer(contentsOfURL: newURL)
+            backgroundMusicPlayer.numberOfLoops = -1
+            backgroundMusicPlayer.delegate = self
+            backgroundMusicPlayer.prepareToPlay()
+            backgroundMusicPlayer.play()
+        } catch let error as NSError {
+            print(error.description)
+        }
+    }
+
 }
 
