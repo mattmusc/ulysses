@@ -12,16 +12,27 @@ import UIKit
 import MapKit
 import SwiftyJSON
 
-class ViewController: UIViewController, AVAudioPlayerDelegate {
+class ViewController: UIViewController, AVAudioPlayerDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
     
     var backgroundMusicPlayer = AVAudioPlayer()
-    var wantsToPlay = false
+    var locationManager = CLLocationManager()
 
+    var wantsToPlay = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Setup location manager
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.distanceFilter = kCLLocationAccuracyKilometer
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
+        
+        // Setup the map
+        mapView.showsUserLocation = true
         // Zoom out the map
         mapView.region.span.longitudeDelta /= 1.5
         mapView.region.span.latitudeDelta /= 1.5
@@ -129,4 +140,5 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
         }
     }
     
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {}
 }

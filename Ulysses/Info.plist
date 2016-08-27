@@ -31,8 +31,6 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>MGLMapboxAccessToken</key>
-	<string>pk.eyJ1IjoibWF0dG11c2MiLCJhIjoiY2lzYzN3cWFzMDAxcjJ0bWtwZTN5OGJzMiJ9.9pMMi1vf4II37gwYBptM-w</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>
@@ -42,6 +40,10 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>I want your location, bro!</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>I want your location, bro!</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
