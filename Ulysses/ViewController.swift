@@ -13,21 +13,28 @@ import MapKit
 import SwiftyJSON
 
 class ViewController: UIViewController, AVAudioPlayerDelegate {
-
+    
     @IBOutlet weak var mapView: MKMapView!
+    
     var backgroundMusicPlayer = AVAudioPlayer()
     var wantsToPlay = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // fetch data from my server and add it to the map
+        // Zoom out the map
+        mapView.region.span.longitudeDelta /= 1.5
+        mapView.region.span.latitudeDelta /= 1.5
+        // Center around Europe
+        mapView.region.center = CLLocationCoordinate2D(latitude: 45, longitude: 50)
+        mapView.setRegion(mapView.region, animated: true)
+
+        // Fetch data from my server and add it to the map
         Alamofire.request(.GET, Constants.SERVER_URL).validate().responseJSON { response in
             switch response.result {
             case .Success:
                 if let values = response.result.value {
                     let json = JSON(values)
-                    //NSLog("JSON: \(json)")
                     
                     for (_,j) in json {
                         let note = Note(
@@ -123,14 +130,3 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
     }
     
 }
-
-//                    for (index, subJson):(String, JSON) in json {
-//                        // build a note obj and push it to the array
-//                        notes.append(
-//                            Note(title: subJson["title"].stringValue,
-//                                coordinate: CLLocationCoordinate2D(
-//                                    latitude: Double(subJson["latitude"].stringValue)!,
-//                                    longitude: Double(subJson["longitude"].stringValue)!),
-//                                info: subJson["info"].stringValue,
-//                                audio: subJson["audio"].stringValue))
-//                    }
