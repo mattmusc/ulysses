@@ -19,12 +19,8 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let london = Note(title: "London", coordinate: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275), info: "Home to the 2012 Summer Olympics.")
-        let oslo = Note(title: "Oslo", coordinate: CLLocationCoordinate2D(latitude: 59.95, longitude: 10.75), info: "Founded over a thousand years ago.")
-        let paris = Note(title: "Paris", coordinate: CLLocationCoordinate2D(latitude: 48.8567, longitude: 2.3508), info: "Often called the City of Light.")
-        
-        mapView.addAnnotation(london)
-        mapView.addAnnotation(oslo)
+        let paris = Note(title: "Paris", coordinate: CLLocationCoordinate2D(latitude: 48.8567, longitude: 2.3508), info: "Often called the City of Light.", audio: "01.mp3")
+
         mapView.addAnnotation(paris)
     }
 
@@ -62,13 +58,14 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
     }
     
     func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
-        let capital = view.annotation as! Note
-        let placeName = capital.title
-        let placeInfo = capital.info
+        let note = view.annotation as! Note
+        let placeName = note.title
+        let placeInfo = note.info
+        let audioFile = note.audio
         
         let callActionHandler = { (action:UIAlertAction!) -> Void in
             self.wantsToPlay = self.wantsToPlay ? false : true
-            self.playBackgroundMusic("01.mp3")
+            self.playBackgroundMusic(audioFile)
         }
         
         let ac = UIAlertController(title: placeName, message: placeInfo, preferredStyle: .Alert)
