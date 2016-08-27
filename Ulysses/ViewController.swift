@@ -6,20 +6,27 @@
 //  Copyright © 2016 The Ulysses Team. All rights reserved.
 //
 
+import AddressBookUI
 import Alamofire
 import AVFoundation
+import ContactsUI
 import UIKit
 import MapKit
 import SwiftyJSON
+import FontAwesome_swift
 
 class ViewController: UIViewController, AVAudioPlayerDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
     
+    // controllers
+    var resultSearchController:UISearchController? = nil
+    
     var backgroundMusicPlayer = AVAudioPlayer()
     var locationManager = CLLocationManager()
 
-    var wantsToPlay = false
+    var audioPlaying = false
+    var DEBUG = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +47,8 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, CLLocationManager
         mapView.region.center = CLLocationCoordinate2D(latitude: 45, longitude: 50)
         mapView.setRegion(mapView.region, animated: true)
 
+        
+        if (DEBUG) {
         // Fetch data from my server and add it to the map
         Alamofire.request(.GET, Constants.SERVER_URL).validate().responseJSON { response in
             switch response.result {
@@ -63,6 +72,20 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, CLLocationManager
                 print(error)
             }
         }
+        }
+        
+        let locationSearchTable = storyboard!.instantiateViewControllerWithIdentifier("LocationSearchTable") as! LocationSearchTable
+        resultSearchController = UISearchController(searchResultsController: locationSearchTable)
+        resultSearchController?.searchResultsUpdater = locationSearchTable
+        
+        let searchBar = resultSearchController!.searchBar
+        searchBar.sizeToFit()
+        searchBar.placeholder = "Search for places"
+        navigationItem.titleView = resultSearchController?.searchBar
+        
+        resultSearchController?.hidesNavigationBarDuringPresentation = false
+        resultSearchController?.dimsBackgroundDuringPresentation = true
+        definesPresentationContext = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -105,14 +128,62 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, CLLocationManager
         let audioFile = note.audio
         
         let callActionHandler = { (action:UIAlertAction!) -> Void in
-            self.wantsToPlay = self.wantsToPlay ? false : true
+            self.audioPlaying = self.audioPlaying ? false : true
             self.playBackgroundMusic(audioFile)
         }
         
+        let closeActionHandler = { (action:UIAlertAction!) -> Void in
+            
+        }
+        
         let ac = UIAlertController(title: placeName, message: placeInfo, preferredStyle: .Alert)
-        ac.addAction(UIAlertAction(title: "play", style: .Default, handler: callActionHandler))
-        ac.addAction(UIAlertAction(title: "stop", style: .Default, handler: callActionHandler))
+        
+        ac.addAction(UIAlertAction(title: self.audioPlaying ? "stop" : "play", style: .Default, handler: callActionHandler))
+        ac.addAction(UIAlertAction(title: "close", style: .Default, handler: closeActionHandler))
+        
         presentViewController(ac, animated: true, completion: nil)
+    }
+    
+    func forwardGeocoding(address: String) {
+        CLGeocoder().geocodeAddressString(address, completionHandler: { (placemarks, error) in
+            if error != nil {
+                print(error)
+                return
+            }
+            if placemarks?.count > 0 {
+                let placemark = placemarks?[0]
+                let location = placemark?.location
+                let coordinate = location?.coordinate
+                print("\nlat: \(coordinate!.latitude), long: \(coordinate!.longitude)")
+                if placemark?.areasOfInterest?.count > 0 {
+                    let areaOfInterest = placemark!.areasOfInterest![0]
+                    print(areaOfInterest)
+                } else {
+                    print("No area of interest found.")
+                }
+            }
+        })
+    }
+    
+    func reverseGeocoding(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
+        let location = CLLocation(latitude: latitude, longitude: longitude)
+        CLGeocoder().reverseGeocodeLocation(location, completionHandler: {(placemarks, error) -> Void in
+            if error != nil {
+                print(error)
+                return
+            }
+            else if placemarks?.count > 0 {
+                let pm = placemarks![0]
+                let address = ABCreateStringWithAddressDictionary(pm.addressDictionary!, false)
+                print("\n\(address)")
+                if pm.areasOfInterest?.count > 0 {
+                    let areaOfInterest = pm.areasOfInterest?[0]
+                    print(areaOfInterest!)
+                } else {
+                    print("No area of interest found.")
+                }
+            }
+        })
     }
     
     func playBackgroundMusic(filename: String) {
@@ -130,7 +201,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, CLLocationManager
             backgroundMusicPlayer.delegate = self
             backgroundMusicPlayer.prepareToPlay()
             
-            if (self.wantsToPlay) {
+            if (self.audioPlaying) {
                 backgroundMusicPlayer.play()
             } else {
                 backgroundMusicPlayer.pause()
@@ -140,5 +211,16 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, CLLocationManager
         }
     }
     
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {}
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let userLocation:CLLocation = locations[0] as CLLocation
+        locationManager.stopUpdatingLocation()
+        
+        let location = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
+        
+        let span = MKCoordinateSpanMake(0.5, 0.5)
+        
+        let region = MKCoordinateRegion (center:  location,span: span)
+        
+        mapView.setRegion(region, animated: true)
+    }
 }

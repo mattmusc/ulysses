@@ -13,6 +13,7 @@
 		3399EBE31D70C67200B4363C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3399EBE21D70C67200B4363C /* Assets.xcassets */; };
 		3399EBE61D70C67200B4363C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3399EBE41D70C67200B4363C /* LaunchScreen.storyboard */; };
 		3399EBF11D70C67200B4363C /* UlyssesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3399EBF01D70C67200B4363C /* UlyssesTests.swift */; };
+		33A5A7B21D72443000718230 /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A5A7B11D72443000718230 /* LocationSearchTable.swift */; };
 		33CDA5B21D71781B00F92406 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33CDA5B11D71781B00F92406 /* MapKit.framework */; };
 		33CDA5B41D7179DE00F92406 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CDA5B31D7179DE00F92406 /* Note.swift */; };
 		33CDA5BA1D718DA600F92406 /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CDA5B91D718DA600F92406 /* MusicPlayer.swift */; };
@@ -55,6 +56,7 @@
 		3399EBEC1D70C67200B4363C /* UlyssesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UlyssesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3399EBF01D70C67200B4363C /* UlyssesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UlyssesTests.swift; sourceTree = "<group>"; };
 		3399EBF21D70C67200B4363C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		33A5A7B11D72443000718230 /* LocationSearchTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
 		33CDA5B11D71781B00F92406 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		33CDA5B31D7179DE00F92406 /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		33CDA5B91D718DA600F92406 /* MusicPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				3399EBDD1D70C67200B4363C /* ViewController.swift */,
 				33CDA5C21D71F8EE00F92406 /* Constants.swift */,
 				3399EBDF1D70C67200B4363C /* Main.storyboard */,
+				33A5A7B11D72443000718230 /* LocationSearchTable.swift */,
 				3399EBE21D70C67200B4363C /* Assets.xcassets */,
 				3399EBE41D70C67200B4363C /* LaunchScreen.storyboard */,
 				3399EBE71D70C67200B4363C /* Info.plist */,
@@ -328,6 +331,7 @@
 				33CDA5C31D71F8EE00F92406 /* Constants.swift in Sources */,
 				3399EBDE1D70C67200B4363C /* ViewController.swift in Sources */,
 				3399EBDC1D70C67200B4363C /* AppDelegate.swift in Sources */,
+				33A5A7B21D72443000718230 /* LocationSearchTable.swift in Sources */,
 				33CDA5BA1D718DA600F92406 /* MusicPlayer.swift in Sources */,
 				33CDA5B41D7179DE00F92406 /* Note.swift in Sources */,
 			);
