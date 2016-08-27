@@ -13,8 +13,7 @@
 		3399EBE31D70C67200B4363C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3399EBE21D70C67200B4363C /* Assets.xcassets */; };
 		3399EBE61D70C67200B4363C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3399EBE41D70C67200B4363C /* LaunchScreen.storyboard */; };
 		3399EBF11D70C67200B4363C /* UlyssesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3399EBF01D70C67200B4363C /* UlyssesTests.swift */; };
-		3399EBFE1D70CD9D00B4363C /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3399EBFC1D70C9D000B4363C /* Mapbox.framework */; };
-		3399EBFF1D70CD9D00B4363C /* Mapbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3399EBFC1D70C9D000B4363C /* Mapbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		33CDA5B21D71781B00F92406 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33CDA5B11D71781B00F92406 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,7 +33,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				3399EBFF1D70CD9D00B4363C /* Mapbox.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -53,6 +51,7 @@
 		3399EBF01D70C67200B4363C /* UlyssesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UlyssesTests.swift; sourceTree = "<group>"; };
 		3399EBF21D70C67200B4363C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3399EBFC1D70C9D000B4363C /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Mapbox.framework; sourceTree = "<group>"; };
+		33CDA5B11D71781B00F92406 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3399EBFE1D70CD9D00B4363C /* Mapbox.framework in Frameworks */,
+				33CDA5B21D71781B00F92406 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +76,7 @@
 		3399EBCF1D70C67100B4363C = {
 			isa = PBXGroup;
 			children = (
+				33CDA5B11D71781B00F92406 /* MapKit.framework */,
 				3399EBFC1D70C9D000B4363C /* Mapbox.framework */,
 				3399EBDA1D70C67200B4363C /* Ulysses */,
 				3399EBEF1D70C67200B4363C /* UlyssesTests */,
@@ -167,6 +167,11 @@
 					3399EBD71D70C67200B4363C = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = 36RZS834XK;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					3399EBEB1D70C67200B4363C = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -423,6 +428,7 @@
 				3399EBF71D70C67200B4363C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3399EBF81D70C67200B4363C /* Build configuration list for PBXNativeTarget "UlyssesTests" */ = {
 			isa = XCConfigurationList;
@@ -431,6 +437,7 @@
 				3399EBFA1D70C67200B4363C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
