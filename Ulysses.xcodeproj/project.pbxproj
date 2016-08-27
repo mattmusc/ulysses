@@ -17,6 +17,8 @@
 		33CDA5B41D7179DE00F92406 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CDA5B31D7179DE00F92406 /* Note.swift */; };
 		33CDA5BA1D718DA600F92406 /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CDA5B91D718DA600F92406 /* MusicPlayer.swift */; };
 		33CDA5BC1D71913500F92406 /* 01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 33CDA5BB1D71913500F92406 /* 01.mp3 */; };
+		33CDA5C31D71F8EE00F92406 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CDA5C21D71F8EE00F92406 /* Constants.swift */; };
+		5BFF2BD78187CE0571F88B11 /* Pods_Ulysses.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0F8E8B56A089D1023E9979E /* Pods_Ulysses.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,11 @@
 		33CDA5B31D7179DE00F92406 /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		33CDA5B91D718DA600F92406 /* MusicPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
 		33CDA5BB1D71913500F92406 /* 01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 01.mp3; sourceTree = "<group>"; };
+		33CDA5BF1D71E53D00F92406 /* Ulysses.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Ulysses.entitlements; sourceTree = "<group>"; };
+		33CDA5C21D71F8EE00F92406 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		7A01733A6A871C8F8D4F4C1F /* Pods-Ulysses.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ulysses.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ulysses/Pods-Ulysses.debug.xcconfig"; sourceTree = "<group>"; };
+		87F8C771B344766B664673B3 /* Pods-Ulysses.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ulysses.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ulysses/Pods-Ulysses.release.xcconfig"; sourceTree = "<group>"; };
+		F0F8E8B56A089D1023E9979E /* Pods_Ulysses.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ulysses.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +72,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				33CDA5B21D71781B00F92406 /* MapKit.framework in Frameworks */,
+				5BFF2BD78187CE0571F88B11 /* Pods_Ulysses.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +93,8 @@
 				3399EBDA1D70C67200B4363C /* Ulysses */,
 				3399EBEF1D70C67200B4363C /* UlyssesTests */,
 				3399EBD91D70C67200B4363C /* Products */,
+				EC24A8F0B6CEEBF63A88667F /* Pods */,
+				BDE617501D06A0F8C7937FE2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,10 +110,12 @@
 		3399EBDA1D70C67200B4363C /* Ulysses */ = {
 			isa = PBXGroup;
 			children = (
+				33CDA5BF1D71E53D00F92406 /* Ulysses.entitlements */,
 				33CDA5BD1D71913F00F92406 /* Music */,
 				33CDA5B91D718DA600F92406 /* MusicPlayer.swift */,
 				3399EBDB1D70C67200B4363C /* AppDelegate.swift */,
 				3399EBDD1D70C67200B4363C /* ViewController.swift */,
+				33CDA5C21D71F8EE00F92406 /* Constants.swift */,
 				3399EBDF1D70C67200B4363C /* Main.storyboard */,
 				3399EBE21D70C67200B4363C /* Assets.xcassets */,
 				3399EBE41D70C67200B4363C /* LaunchScreen.storyboard */,
@@ -130,6 +142,23 @@
 			name = Music;
 			sourceTree = "<group>";
 		};
+		BDE617501D06A0F8C7937FE2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F0F8E8B56A089D1023E9979E /* Pods_Ulysses.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EC24A8F0B6CEEBF63A88667F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7A01733A6A871C8F8D4F4C1F /* Pods-Ulysses.debug.xcconfig */,
+				87F8C771B344766B664673B3 /* Pods-Ulysses.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -137,10 +166,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3399EBF51D70C67200B4363C /* Build configuration list for PBXNativeTarget "Ulysses" */;
 			buildPhases = (
+				D66827B8B58C5BA2EEFB08C9 /* [CP] Check Pods Manifest.lock */,
 				3399EBD41D70C67200B4363C /* Sources */,
 				3399EBD51D70C67200B4363C /* Frameworks */,
 				3399EBD61D70C67200B4363C /* Resources */,
 				3399EC001D70CD9E00B4363C /* Embed Frameworks */,
+				56B66DB75DC2B46972163D33 /* [CP] Embed Pods Frameworks */,
+				051BABCC616170D98B290C06 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -185,6 +217,9 @@
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
+							};
+							com.apple.InterAppAudio = {
+								enabled = 0;
 							};
 							com.apple.Maps.iOS = {
 								enabled = 1;
@@ -237,11 +272,60 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		051BABCC616170D98B290C06 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Ulysses/Pods-Ulysses-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		56B66DB75DC2B46972163D33 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Ulysses/Pods-Ulysses-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D66827B8B58C5BA2EEFB08C9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		3399EBD41D70C67200B4363C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33CDA5C31D71F8EE00F92406 /* Constants.swift in Sources */,
 				3399EBDE1D70C67200B4363C /* ViewController.swift in Sources */,
 				3399EBDC1D70C67200B4363C /* AppDelegate.swift in Sources */,
 				33CDA5BA1D718DA600F92406 /* MusicPlayer.swift in Sources */,
@@ -372,6 +456,7 @@
 		};
 		3399EBF61D70C67200B4363C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7A01733A6A871C8F8D4F4C1F /* Pods-Ulysses.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -390,6 +475,7 @@
 		};
 		3399EBF71D70C67200B4363C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 87F8C771B344766B664673B3 /* Pods-Ulysses.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";

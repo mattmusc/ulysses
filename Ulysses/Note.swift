@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import SwiftyJSON
 
 class Note: NSObject, MKAnnotation {
     var title: String?

@@ -6,9 +6,11 @@
 //  Copyright © 2016 The Ulysses Team. All rights reserved.
 //
 
+import Alamofire
 import AVFoundation
 import UIKit
 import MapKit
+import SwiftyJSON
 
 class ViewController: UIViewController, AVAudioPlayerDelegate {
 
@@ -19,9 +21,30 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let paris = Note(title: "Paris", coordinate: CLLocationCoordinate2D(latitude: 48.8567, longitude: 2.3508), info: "Often called the City of Light.", audio: "01.mp3")
+        // fetch data from my server and add it to the map
+        Alamofire.request(.GET, Constants.SERVER_URL).validate().responseJSON { response in
+            switch response.result {
+            case .Success:
+                if let values = response.result.value {
+                    let json = JSON(values)
+                    //NSLog("JSON: \(json)")
+                    
+                    for (_,j) in json {
+                        let note = Note(
+                            title: j["title"].stringValue,
+                            coordinate: CLLocationCoordinate2D(
+                                latitude: Double(j["latitude"].stringValue)!,
+                                longitude: Double(j["longitude"].stringValue)!),
+                            info: j["info"].stringValue,
+                            audio: j["audio"].stringValue)
 
-        mapView.addAnnotation(paris)
+                        self.mapView.addAnnotation(note)
+                    }
+                }
+            case .Failure(let error):
+                print(error)
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -98,6 +121,16 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
             print(error.description)
         }
     }
-
+    
 }
 
+//                    for (index, subJson):(String, JSON) in json {
+//                        // build a note obj and push it to the array
+//                        notes.append(
+//                            Note(title: subJson["title"].stringValue,
+//                                coordinate: CLLocationCoordinate2D(
+//                                    latitude: Double(subJson["latitude"].stringValue)!,
+//                                    longitude: Double(subJson["longitude"].stringValue)!),
+//                                info: subJson["info"].stringValue,
+//                                audio: subJson["audio"].stringValue))
+//                    }

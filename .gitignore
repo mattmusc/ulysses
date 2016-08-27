@@ -123,3 +123,6 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+# Ignore Constants.swift file
+Ulysses/Constants.swift
+
