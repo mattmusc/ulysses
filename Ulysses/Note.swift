@@ -13,13 +13,17 @@ import SwiftyJSON
 class Note: NSObject, MKAnnotation {
     var title: String?
     var coordinate: CLLocationCoordinate2D
-    var info: String
+    var city: String
+    var address: String
     var audio: String
+    var tagger: String
 
-    init(title: String, coordinate: CLLocationCoordinate2D, info: String, audio: String) {
+    init(title: String, coordinate: CLLocationCoordinate2D, city: String, address: String, audio: String, tagger: String) {
         self.title = title
         self.coordinate = coordinate
-        self.info = info
+        self.city = city
+        self.address = address
         self.audio = audio
+        self.tagger = tagger
     }
 }

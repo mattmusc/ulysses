@@ -25,9 +25,14 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, CLLocationManager
     var myPlayer = AVAudioPlayer()
     var backgroundMusicPlayer = AVAudioPlayer()
     var locationManager = CLLocationManager()
-
+    var mapCamera = MKMapCamera()
+    
     var audioPlaying = false
     var DEBUG = true
+    
+    // temporary variables to hold geocode functions results
+    var coordinates: CLLocationCoordinate2D!
+    var address: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,9 +54,8 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, CLLocationManager
         mapView.setRegion(mapView.region, animated: true)
 
         
-        if (DEBUG) {
         // Fetch data from my server and add it to the map
-        Alamofire.request(.GET, Constants.SERVER_URL).validate().responseJSON { response in
+        Alamofire.request(.GET, Constants.SERVER_URL_NOTES).validate().responseJSON { response in
             switch response.result {
             case .Success:
                 if let values = response.result.value {
@@ -63,8 +67,10 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, CLLocationManager
                             coordinate: CLLocationCoordinate2D(
                                 latitude: Double(j["latitude"].stringValue)!,
                                 longitude: Double(j["longitude"].stringValue)!),
-                            info: j["info"].stringValue,
-                            audio: j["audio"].stringValue)
+                            city: j["city"].stringValue,
+                            address: j["address"].stringValue,
+                            audio: j["audio"].stringValue,
+                            tagger: j["tagger"].stringValue)
 
                         self.mapView.addAnnotation(note)
                     }
@@ -72,7 +78,6 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, CLLocationManager
             case .Failure(let error):
                 print(error)
             }
-        }
         }
         
         let locationSearchTable = storyboard!.instantiateViewControllerWithIdentifier("LocationSearchTable") as! LocationSearchTable
@@ -88,7 +93,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, CLLocationManager
         resultSearchController?.dimsBackgroundDuringPresentation = true
         definesPresentationContext = true
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -124,12 +129,14 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, CLLocationManager
     
     func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
         let note = view.annotation as! Note
-        let placeName = note.title
-        let placeInfo = note.info
-        let audioFileName = note.audio
+        let noteTitle = note.title
+        let noteCity = note.city
+        let noteAddress = note.address
+        let noteAudio = note.audio
+        let noteTagger = note.tagger
         
         let callActionHandler = { (action:UIAlertAction!) -> Void in
-            let fileUrl = Constants.SERVER_URL_AUDIO + audioFileName
+            let fileUrl = Constants.SERVER_URL_AUDIO + "/" + noteAudio
             let url = NSURL(string: fileUrl)
         
             do {
@@ -137,6 +144,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, CLLocationManager
                 self.myPlayer.play()
             
             } catch let error as NSError {
+                print(fileUrl)
                 print(error.description)
             }
         }
@@ -144,7 +152,9 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, CLLocationManager
         let closeActionHandler = { (action:UIAlertAction!) -> Void in
         }
         
-        let ac = UIAlertController(title: placeName, message: placeInfo, preferredStyle: .Alert)
+        let tit = noteTitle! + " - " + noteTagger
+        let mex = noteCity + "\n" + noteAddress != nil ? noteAddress : ""
+        let ac = UIAlertController(title: tit, message: mex, preferredStyle: .Alert)
         
         ac.addAction(UIAlertAction(title: self.audioPlaying ? "stop" : "play", style: .Default, handler: callActionHandler))
         ac.addAction(UIAlertAction(title: "close", style: .Default, handler: closeActionHandler))
@@ -163,6 +173,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, CLLocationManager
                 let location = placemark?.location
                 let coordinate = location?.coordinate
                 print("\nlat: \(coordinate!.latitude), long: \(coordinate!.longitude)")
+                self.coordinates = coordinate
                 if placemark?.areasOfInterest?.count > 0 {
                     let areaOfInterest = placemark!.areasOfInterest![0]
                     print(areaOfInterest)
@@ -184,6 +195,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, CLLocationManager
                 let pm = placemarks![0]
                 let address = ABCreateStringWithAddressDictionary(pm.addressDictionary!, false)
                 print("\n\(address)")
+                self.address = address
                 if pm.areasOfInterest?.count > 0 {
                     let areaOfInterest = pm.areasOfInterest?[0]
                     print(areaOfInterest!)
@@ -228,8 +240,9 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, CLLocationManager
         
         let location = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude + 0.0035)
         
-        let span = MKCoordinateSpanMake(0.0075, 0.0075)
+        let span = MKCoordinateSpanMake(0.0095, 0.0095)
         let region = MKCoordinateRegion (center: location, span: span)
         mapView.setRegion(region, animated: true)
     }
+    
 }
