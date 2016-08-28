@@ -145,10 +145,13 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, CLLocationManager
         let noteTagger = note.tagger
         
         let callActionHandler = { (action:UIAlertAction!) -> Void in
-            let fileUrl = Constants.SERVER_URL_AUDIO + "/" + noteAudio
-            let url = NSURL(string: fileUrl)
+            let filePath = NSBundle.mainBundle().URLForResource(noteAudio, withExtension: nil)
+            guard let url = filePath else {
+                NSLog("Could not find file: \(noteAudio)")
+                return
+            }
             do {
-                self.myPlayer = try AVAudioPlayer(contentsOfURL: url!)
+                self.myPlayer = try AVAudioPlayer(contentsOfURL: url)
                 self.myPlayer.play()
             } catch let error as NSError {
                 print(error.description)
