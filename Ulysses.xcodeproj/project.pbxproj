@@ -46,7 +46,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		3399EBD81D70C67200B4363C /* Ulysses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ulysses.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3399EBD81D70C67200B4363C /* Ulisse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ulisse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3399EBDB1D70C67200B4363C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3399EBDD1D70C67200B4363C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3399EBE01D70C67200B4363C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -103,7 +103,7 @@
 		3399EBD91D70C67200B4363C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3399EBD81D70C67200B4363C /* Ulysses.app */,
+				3399EBD81D70C67200B4363C /* Ulisse.app */,
 				3399EBEC1D70C67200B4363C /* UlyssesTests.xctest */,
 			);
 			name = Products;
@@ -183,7 +183,7 @@
 			);
 			name = Ulysses;
 			productName = Ulysses;
-			productReference = 3399EBD81D70C67200B4363C /* Ulysses.app */;
+			productReference = 3399EBD81D70C67200B4363C /* Ulisse.app */;
 			productType = "com.apple.product-type.application";
 		};
 		3399EBEB1D70C67200B4363C /* UlyssesTests */ = {
@@ -472,7 +472,7 @@
 				INFOPLIST_FILE = Ulysses/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ch.ulysses.Ulysses;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Ulisse;
 				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
@@ -491,7 +491,7 @@
 				INFOPLIST_FILE = Ulysses/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ch.ulysses.Ulysses;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Ulisse;
 				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
