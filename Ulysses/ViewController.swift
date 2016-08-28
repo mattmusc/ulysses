@@ -22,11 +22,12 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, CLLocationManager
     // controllers
     var resultSearchController:UISearchController? = nil
     
+    var myPlayer = AVAudioPlayer()
     var backgroundMusicPlayer = AVAudioPlayer()
     var locationManager = CLLocationManager()
 
     var audioPlaying = false
-    var DEBUG = false
+    var DEBUG = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -125,15 +126,22 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, CLLocationManager
         let note = view.annotation as! Note
         let placeName = note.title
         let placeInfo = note.info
-        let audioFile = note.audio
+        let audioFileName = note.audio
         
         let callActionHandler = { (action:UIAlertAction!) -> Void in
-            self.audioPlaying = self.audioPlaying ? false : true
-            self.playBackgroundMusic(audioFile)
+            let fileUrl = Constants.SERVER_URL_AUDIO + audioFileName
+            let url = NSURL(string: fileUrl)
+        
+            do {
+                self.myPlayer = try AVAudioPlayer(contentsOfURL: url!)
+                self.myPlayer.play()
+            
+            } catch let error as NSError {
+                print(error.description)
+            }
         }
         
         let closeActionHandler = { (action:UIAlertAction!) -> Void in
-            
         }
         
         let ac = UIAlertController(title: placeName, message: placeInfo, preferredStyle: .Alert)
@@ -211,16 +219,17 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, CLLocationManager
         }
     }
     
+    //
+    // Fired when the current location has been detected with the specified accuracy
+    // This method zoom the map on the current user location
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let userLocation:CLLocation = locations[0] as CLLocation
         locationManager.stopUpdatingLocation()
         
-        let location = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
+        let location = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude + 0.0035)
         
-        let span = MKCoordinateSpanMake(0.5, 0.5)
-        
-        let region = MKCoordinateRegion (center:  location,span: span)
-        
+        let span = MKCoordinateSpanMake(0.0075, 0.0075)
+        let region = MKCoordinateRegion (center: location, span: span)
         mapView.setRegion(region, animated: true)
     }
 }
