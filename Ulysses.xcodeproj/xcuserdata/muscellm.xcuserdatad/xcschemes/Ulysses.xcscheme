@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3399EBD71D70C67200B4363C"
-               BuildableName = "Ulysses.app"
+               BuildableName = "Ulisse.app"
                BlueprintName = "Ulysses"
                ReferencedContainer = "container:Ulysses.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3399EBD71D70C67200B4363C"
-            BuildableName = "Ulysses.app"
+            BuildableName = "Ulisse.app"
             BlueprintName = "Ulysses"
             ReferencedContainer = "container:Ulysses.xcodeproj">
          </BuildableReference>
@@ -66,7 +66,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3399EBD71D70C67200B4363C"
-            BuildableName = "Ulysses.app"
+            BuildableName = "Ulisse.app"
             BlueprintName = "Ulysses"
             ReferencedContainer = "container:Ulysses.xcodeproj">
          </BuildableReference>
@@ -85,7 +85,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3399EBD71D70C67200B4363C"
-            BuildableName = "Ulysses.app"
+            BuildableName = "Ulisse.app"
             BlueprintName = "Ulysses"
             ReferencedContainer = "container:Ulysses.xcodeproj">
          </BuildableReference>

@@ -23,7 +23,6 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, CLLocationManager
     var resultSearchController:UISearchController? = nil
     
     var myPlayer = AVAudioPlayer()
-    var backgroundMusicPlayer = AVAudioPlayer()
     var locationManager = CLLocationManager()
     var mapCamera = MKMapCamera()
     
@@ -92,6 +91,16 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, CLLocationManager
         resultSearchController?.hidesNavigationBarDuringPresentation = false
         resultSearchController?.dimsBackgroundDuringPresentation = true
         definesPresentationContext = true
+        
+        //
+        // Set up the audio player
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try AVAudioSession.sharedInstance().setActive(true)
+            UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
+        } catch let error as NSError {
+            print(error.description)
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -138,13 +147,10 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, CLLocationManager
         let callActionHandler = { (action:UIAlertAction!) -> Void in
             let fileUrl = Constants.SERVER_URL_AUDIO + "/" + noteAudio
             let url = NSURL(string: fileUrl)
-        
             do {
                 self.myPlayer = try AVAudioPlayer(contentsOfURL: url!)
                 self.myPlayer.play()
-            
             } catch let error as NSError {
-                print(fileUrl)
                 print(error.description)
             }
         }
@@ -204,31 +210,6 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, CLLocationManager
                 }
             }
         })
-    }
-    
-    func playBackgroundMusic(filename: String) {
-        let url = NSBundle.mainBundle().URLForResource(filename, withExtension: nil)
-        guard let newURL = url else {
-            NSLog("Could not find file: \(filename)")
-            return
-        }
-        do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-            try AVAudioSession.sharedInstance().setActive(true)
-            UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
-            backgroundMusicPlayer = try AVAudioPlayer(contentsOfURL: newURL)
-            backgroundMusicPlayer.numberOfLoops = -1
-            backgroundMusicPlayer.delegate = self
-            backgroundMusicPlayer.prepareToPlay()
-            
-            if (self.audioPlaying) {
-                backgroundMusicPlayer.play()
-            } else {
-                backgroundMusicPlayer.pause()
-            }
-        } catch let error as NSError {
-            print(error.description)
-        }
     }
     
     //
