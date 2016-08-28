@@ -136,6 +136,8 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, CLLocationManager
         return nil
     }
     
+    //
+    // Called whenever the map is ready and an Annotation is added
     func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
         let note = view.annotation as! Note
         let noteTitle = note.title
@@ -145,6 +147,11 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, CLLocationManager
         let noteTagger = note.tagger
         
         let callActionHandler = { (action:UIAlertAction!) -> Void in
+            if (self.audioPlaying) {
+                self.myPlayer.stop()
+                return
+            }
+
             let filePath = NSBundle.mainBundle().URLForResource(noteAudio, withExtension: nil)
             guard let url = filePath else {
                 NSLog("Could not find file: \(noteAudio)")
@@ -153,6 +160,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, CLLocationManager
             do {
                 self.myPlayer = try AVAudioPlayer(contentsOfURL: url)
                 self.myPlayer.play()
+                self.audioPlaying = true
             } catch let error as NSError {
                 print(error.description)
             }
@@ -171,6 +179,8 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, CLLocationManager
         presentViewController(ac, animated: true, completion: nil)
     }
     
+    //
+    // Returns latitude and longitude given a string with an Address
     func forwardGeocoding(address: String) {
         CLGeocoder().geocodeAddressString(address, completionHandler: { (placemarks, error) in
             if error != nil {
@@ -183,16 +193,12 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, CLLocationManager
                 let coordinate = location?.coordinate
                 print("\nlat: \(coordinate!.latitude), long: \(coordinate!.longitude)")
                 self.coordinates = coordinate
-                if placemark?.areasOfInterest?.count > 0 {
-                    let areaOfInterest = placemark!.areasOfInterest![0]
-                    print(areaOfInterest)
-                } else {
-                    print("No area of interest found.")
-                }
             }
         })
     }
     
+    //
+    // Returns an String with an Address given location latitude and logitude
     func reverseGeocoding(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
         let location = CLLocation(latitude: latitude, longitude: longitude)
         CLGeocoder().reverseGeocodeLocation(location, completionHandler: {(placemarks, error) -> Void in
@@ -205,12 +211,6 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, CLLocationManager
                 let address = ABCreateStringWithAddressDictionary(pm.addressDictionary!, false)
                 print("\n\(address)")
                 self.address = address
-                if pm.areasOfInterest?.count > 0 {
-                    let areaOfInterest = pm.areasOfInterest?[0]
-                    print(areaOfInterest!)
-                } else {
-                    print("No area of interest found.")
-                }
             }
         })
     }

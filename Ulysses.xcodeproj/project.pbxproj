@@ -13,11 +13,12 @@
 		3399EBE31D70C67200B4363C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3399EBE21D70C67200B4363C /* Assets.xcassets */; };
 		3399EBE61D70C67200B4363C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3399EBE41D70C67200B4363C /* LaunchScreen.storyboard */; };
 		3399EBF11D70C67200B4363C /* UlyssesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3399EBF01D70C67200B4363C /* UlyssesTests.swift */; };
+		339ECC131D73255A005F8AF9 /* chiasso_01.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 339ECC111D73255A005F8AF9 /* chiasso_01.m4a */; };
+		339ECC141D73255A005F8AF9 /* chiasso_02.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 339ECC121D73255A005F8AF9 /* chiasso_02.m4a */; };
 		33A5A7B21D72443000718230 /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A5A7B11D72443000718230 /* LocationSearchTable.swift */; };
 		33CDA5B21D71781B00F92406 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33CDA5B11D71781B00F92406 /* MapKit.framework */; };
 		33CDA5B41D7179DE00F92406 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CDA5B31D7179DE00F92406 /* Note.swift */; };
 		33CDA5BA1D718DA600F92406 /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CDA5B91D718DA600F92406 /* MusicPlayer.swift */; };
-		33CDA5BC1D71913500F92406 /* 01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 33CDA5BB1D71913500F92406 /* 01.mp3 */; };
 		33CDA5C31D71F8EE00F92406 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CDA5C21D71F8EE00F92406 /* Constants.swift */; };
 		5BFF2BD78187CE0571F88B11 /* Pods_Ulysses.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0F8E8B56A089D1023E9979E /* Pods_Ulysses.framework */; };
 /* End PBXBuildFile section */
@@ -56,11 +57,12 @@
 		3399EBEC1D70C67200B4363C /* UlyssesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UlyssesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3399EBF01D70C67200B4363C /* UlyssesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UlyssesTests.swift; sourceTree = "<group>"; };
 		3399EBF21D70C67200B4363C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		339ECC111D73255A005F8AF9 /* chiasso_01.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = chiasso_01.m4a; path = Ulysses/chiasso_01.m4a; sourceTree = "<group>"; };
+		339ECC121D73255A005F8AF9 /* chiasso_02.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = chiasso_02.m4a; path = Ulysses/chiasso_02.m4a; sourceTree = "<group>"; };
 		33A5A7B11D72443000718230 /* LocationSearchTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
 		33CDA5B11D71781B00F92406 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		33CDA5B31D7179DE00F92406 /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		33CDA5B91D718DA600F92406 /* MusicPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
-		33CDA5BB1D71913500F92406 /* 01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 01.mp3; sourceTree = "<group>"; };
 		33CDA5BF1D71E53D00F92406 /* Ulysses.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Ulysses.entitlements; sourceTree = "<group>"; };
 		33CDA5C21D71F8EE00F92406 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7A01733A6A871C8F8D4F4C1F /* Pods-Ulysses.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ulysses.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ulysses/Pods-Ulysses.debug.xcconfig"; sourceTree = "<group>"; };
@@ -91,6 +93,8 @@
 		3399EBCF1D70C67100B4363C = {
 			isa = PBXGroup;
 			children = (
+				339ECC111D73255A005F8AF9 /* chiasso_01.m4a */,
+				339ECC121D73255A005F8AF9 /* chiasso_02.m4a */,
 				33CDA5B11D71781B00F92406 /* MapKit.framework */,
 				3399EBDA1D70C67200B4363C /* Ulysses */,
 				3399EBEF1D70C67200B4363C /* UlyssesTests */,
@@ -140,7 +144,6 @@
 		33CDA5BD1D71913F00F92406 /* Music */ = {
 			isa = PBXGroup;
 			children = (
-				33CDA5BB1D71913500F92406 /* 01.mp3 */,
 			);
 			name = Music;
 			sourceTree = "<group>";
@@ -259,7 +262,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				33CDA5BC1D71913500F92406 /* 01.mp3 in Resources */,
+				339ECC131D73255A005F8AF9 /* chiasso_01.m4a in Resources */,
+				339ECC141D73255A005F8AF9 /* chiasso_02.m4a in Resources */,
 				3399EBE61D70C67200B4363C /* LaunchScreen.storyboard in Resources */,
 				3399EBE31D70C67200B4363C /* Assets.xcassets in Resources */,
 				3399EBE11D70C67200B4363C /* Main.storyboard in Resources */,
